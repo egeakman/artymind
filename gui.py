@@ -145,9 +145,8 @@ class Window(QWidget):
 
         print(r.json())
         response = requests.get(r.json()["output_url"])
-        file = open(f"{self.dir}/created_image.png", "wb")
-        file.write(response. content)
-        file.close()
+        with open(f"{self.dir}/created_image.png", "wb") as file:
+            file.write(response. content)
         pixmap = QtGui.QPixmap(f'{self.dir}/created_image.png')
         self.image.setPixmap(pixmap)
         self.label.setVisible(False)
